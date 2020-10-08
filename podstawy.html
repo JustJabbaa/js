@@ -9,10 +9,22 @@
 <body>
     <button onclick="pokazTekst()">Pokaz tekst</button>
     <p id="miejsceNaTekst"></p>
+    <img id="obrazek"src="https://picsum.photos/700/300">
+    <button onclick="przelaczObrazek()">Pokaz / ukryj obrazek</button>
     <script>
     console.log("xD");
     function pokazTekst(){
-    document.getElementById('miejsceNaTekst').innerHTML = "Bedzie pojawiane es";}
+            document.getElementById('miejsceNaTekst').innerHTML = "Bedzie pojawiane es";
+    }
+   
+    function przelaczObrazek() {
+        if(document.getElementById('obrazek').style.display =="block")
+         document.getElementById('obrazek').style.display = "none";
+         
+         else {
+            document.getElementById('obrazek').style.display = "block";
+         }
+    }
     </script>
 </body>
 </html>
