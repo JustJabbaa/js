@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="x">
+    <input type="number" id="y"><br>
+    <button onclick="dodaj()">+</button>
+    <button onclick="odejmij()">-</button>
+    <button onclick="pomnoz()">*</button>
+    <button onclick="podziel()">/</button>
+    <p id="z"></p>
+    <script>
+      function dodaj() {
+        var x = document.getElementById('x').value;
+        x = parseInt(x);
+       
+        var y = document.getElementById('y').value
+        y = parseInt(y);
+       
+        var z = x+y;
+        console.log(z);
+        document.getElementById("z").innerHTML = z;
+    }
+    
+    </script>
+</body>
+</html>
