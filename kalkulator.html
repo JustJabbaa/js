@@ -1,3 +1,4 @@
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,61 +8,44 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="number" id="x">
-    <input type="number" id="y"><br>
-    <button onclick="dodaj()">+</button>
-    <button onclick="odejmij()">-</button>
-    <button onclick="pomnoz()">*</button>
-    <button onclick="podziel()">/</button>
+    Podaj Pierwszą Liczbę:<input id="x" type="numer"> <br>
+    Podaj Drugą Liczbę:<input id="y" type="numer"> <br>
+<div id="options">
+    Dodawanie:<input type="radio" id="dodaj" name="dzialanie" value="dodawanie"> <br>
+    Odejmowanie:<input type="radio" id="odejmij" name="dzialanie" value="odejmowanie"> <br>
+    Mnożenie:<input type="radio" id="mnozenie" name="dzialanie" value="mnozenie"> <br>
+    Dzielenie:<input type="radio" id="dzielenie" name="dzialanie" value="dzielenie"> <br>
+
+    <button onclick="Oblicz()">Oblicz</button>
     <p id="z"></p>
+</div>
     <script>
-      function dodaj() {
-        var x = document.getElementById('x').value;
-        x = parseInt(x);
-       
-        var y = document.getElementById('y').value
-        y = parseInt(y);
-       
-        var z = x+y;
-        console.log(z);
-        document.getElementById("z").innerHTML = z;
-    }
+        function Oblicz(){
+            var x = document.getElementById('x').value;
+            var y = document.getElementById('y').value;
+            x = parseInt(x);
+            y = parseInt(y);
 
-            function odejmij() {
-              var x = document.getElementById('x').value;
-              x = parseInt(x);
-             
-              var y = document.getElementById('y').value
-              y = parseInt(y);
-             
-              var z = x-y;
-              console.log(z);
-              document.getElementById("z").innerHTML = z;
-          }
-
-            function pomnoz() {
-              var x = document.getElementById('x').value;
-              x = parseInt(x);
-             
-              var y = document.getElementById('y').value
-              y = parseInt(y);
-             
-              var z = x*y;
-              console.log(z);
-              document.getElementById("z").innerHTML = z;
-          }
-
-                    function podziel() {
-                      var x = document.getElementById('x').value;
-                      x = parseInt(x);
-                     
-                      var y = document.getElementById('y').value
-                      y = parseInt(y);
-                     
-                      var z = x/y;
-                      console.log(z);
-                      document.getElementById("z").innerHTML = z;
-                  }
-                  </script>
+            var dzialanie = document.getElementsByName('option').value;
+            
+            if(document.getElementById('dodaj').checked){
+                var z = x + y;
+                console.log(z);
+                document.getElementById('z').innerHTML = z;
+            }else if(document.getElementById('odejmij').checked){
+                var z = x - y;
+                console.log(z);
+                document.getElementById('z').innerHTML = z;
+            }else if(document.getElementById('mnozenie').checked){
+                var z = x * y;
+                console.log(z);
+                document.getElementById('z').innerHTML = z;
+            }else if(document.getElementById('dzielenie').checked){
+                var z = x / y;
+                console.log(z);
+                document.getElementById('z').innerHTML = z;
+            }
+        }
+    </script>
 </body>
 </html>
