@@ -1,0 +1,8 @@
+#containter {
+    width: 1320px;
+    margin: 0 auto;
+}
+#containter > img {
+    float: left;
+    margin: 10px;
+}

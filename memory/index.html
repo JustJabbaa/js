@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="containter">
+
+    </div>
+    <script>
+        var wybranaKarta = null;
+        var tablicaKart = Array();
+        for(var i = 1 ; i <= 9 ; i++) {
+            var nazwaPliku = "img/0" + i + ".jpg";
+            tablicaKart.push(nazwaPliku);
+            tablicaKart.push(nazwaPliku);
+        }
+        //console.log(tablicaKart);
+        var losowaTablicaKart = Array();
+        while(tablicaKart.length > 0) {
+            var losowyIndeks = Math.round( Math.random() * ( tablicaKart.length - 1 ) );
+            var przenoszonaKarta = tablicaKart.splice(losowyIndeks, 1)[0]; //splice zwraca tablice a nie element
+            losowaTablicaKart.push(przenoszonaKarta);
+        }
+        //console.log(losowaTablicaKart);
+        var containter = document.getElementById("containter");
+        //pokazuje wszystkie odkryte
+        /*
+        for(var i = 0 ; i < losowaTablicaKart.length ; i++) {
+            var image = '<img src="' + losowaTablicaKart[i] + '">';
+            containter.innerHTML += image;
+        }
+        */
+        var odwrocone = Array();
+        for(var i = 0; i < losowaTablicaKart.length ; i++) {
+            odwrocone.push(false);
+        }
+            
+    
+        rysujKarty();
+
+
+        
+        function rysujKarty() {
+            containter.innerHTML = ""; //czyścimy kontener
+            for(var i = 0 ; i < losowaTablicaKart.length ; i++) {
+                
+                //var image = '<img src="' + losowaTablicaKart[i] + '">';
+                if(odwrocone[i]) {//bedzie true albo false 
+                    //containter.innerHTML += image; //dodajemy obrazek
+                    var image = document.createElement('img');
+                    image.src = losowaTablicaKart[i];
+                    containter.appendChild(image);
+                }
+                else {
+                    var image = document.createElement('img');
+                    image.src = "img/plecy.jpg";
+                    image.id = i; //i.toString().padStart(2,'0');
+                    image.addEventListener("click", odwrocKarte, false);
+                    containter.appendChild(image);
+                }
+            }
+        }
+        
+        function odwrocKarte(event) {
+            //console.log(event.srcElement.id);
+            console.log("wybrana: " + wybranaKarta + " kliknieta: " + event.srcElement.id);
+            if(wybranaKarta == null) {//kliknelismy pierwsza karte
+                odwrocone[event.srcElement.id] = true; //odkrywamy
+                wybranaKarta = event.srcElement.id;
+            }
+            else {
+                if(losowaTablicaKart[event.srcElement.id] == losowaTablicaKart[wybranaKarta]) { //czy kliknelismy taka sama karte
+                    odwrocone[event.srcElement.id] = true;
+
+                } else {
+                    //zakryj obie 
+
+                    odwrocone[event.srcElement.id] = false;
+                    odwrocone[wybranaKarta] = false;
+                    
+                    
+                }
+                wybranaKarta = null;
+            }
+            //console.log(odwrocone);
+            rysujKarty();
+        }
+
+    </script>
+</body>
+</html>
